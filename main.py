@@ -133,6 +133,7 @@ def finish():
 if st.session_state["time"] != None and datetime.datetime.now(datetime.timezone.utc) - st.session_state["time"] > datetime.timedelta(minutes=5):
     if st.session_state["dialog_finish"] == 0:
         finish()
+        st.stop()
 
 #メッセージが空の時か、最初が人間のメッセージの時、最初のAIのメッセージを挿入する。
 if st.session_state["messages"] == [] or st.session_state["messages"][0]["role"] == "human":
@@ -140,7 +141,7 @@ if st.session_state["messages"] == [] or st.session_state["messages"][0]["role"]
 #会話終了後
 if st.session_state["dialog_finish"] == 2:
     st.markdown(
-                f'<br>会話は終了しました。<br><a href="https://nagoyapsychology.qualtrics.com/jfe/form/SV_es86xaTv17rIado" target="_self">こちら</a>をクリックしてアンケートを進めてください。',
+                f'<br>会話は終了しました。<br><a href="https://nagoyapsychology.qualtrics.com/jfe/form/SV_es86xaTv17rIado" ;>こちら</a>をクリックしてアンケートを進めてください。',
                 unsafe_allow_html=True
     )
     if st.session_state["human_message"].strip() != "":
